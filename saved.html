@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Saved News | NEXORA</title>
+
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968267.png">
+
+<style>
+
+body{
+background:#0b1020;
+color:white;
+font-family:Arial;
+padding:20px;
+}
+
+h1{
+margin-bottom:20px;
+}
+
+.news{
+background:#151f38;
+padding:20px;
+border-radius:18px;
+margin-bottom:15px;
+}
+
+a{
+color:#00bfff;
+text-decoration:none;
+}
+
+.empty{
+text-align:center;
+padding:40px;
+color:#aaa;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Saved News</h1>
+
+<div id="savedContainer"></div>
+
+<script>
+
+const container =
+document.getElementById("savedContainer");
+
+const saved =
+JSON.parse(
+localStorage.getItem("savedNews")
+|| "[]"
+);
+
+if(saved.length === 0){
+
+container.innerHTML = `
+
+<div class="empty">
+
+No saved news
+
+</div>
+
+`;
+
+}
+
+else{
+
+saved.forEach(article=>{
+
+container.innerHTML += `
+
+<div class="news">
+
+<h3>
+
+${article.title}
+
+</h3>
+
+<br>
+
+<a href="${article.url}"
+target="_blank">
+
+Read Article
+
+</a>
+
+</div>
+
+`;
+
+});
+
+}
+
+</script>
+<br><br>
+
+<a href="home.html">
+
+← Back Home
+
+</a>
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reset Password - NEXORA</title>
+
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968267.png">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#0a0a12,#12091f,#000);
+overflow:hidden;
+}
+
+.reset-container{
+
+width:420px;
+
+padding:35px;
+
+border-radius:25px;
+
+background:rgba(255,255,255,0.05);
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,0.08);
+
+box-shadow:
+0 0 50px rgba(0,0,0,0.5);
+
+}
+
+.logo{
+
+text-align:center;
+
+font-size:42px;
+
+font-weight:bold;
+
+margin-bottom:15px;
+
+background:
+linear-gradient(
+135deg,
+#ff00cc,
+#7a00ff,
+#0095ff
+);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+.desc{
+
+text-align:center;
+
+color:#aaa;
+
+line-height:1.7;
+
+margin-bottom:25px;
+
+font-size:14px;
+
+}
+
+input{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:14px;
+
+background:#171724;
+
+border:1px solid #2d2d44;
+
+color:white;
+
+font-size:15px;
+
+outline:none;
+
+margin-bottom:15px;
+
+transition:0.3s;
+
+}
+
+input:focus{
+
+border-color:#7a00ff;
+
+box-shadow:
+0 0 15px rgba(122,0,255,0.3);
+
+}
+
+button{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:14px;
+
+background:
+linear-gradient(
+135deg,
+#ff008c,
+#7a00ff
+);
+
+color:white;
+
+font-size:16px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+button:hover{
+
+transform:translateY(-2px);
+
+}
+
+button:disabled{
+
+opacity:0.6;
+cursor:not-allowed;
+transform:none;
+
+}
+
+.back{
+
+display:block;
+
+text-align:center;
+
+margin-top:18px;
+
+color:#aaa;
+
+text-decoration:none;
+
+font-size:14px;
+
+transition:0.3s;
+
+}
+
+.back:hover{
+
+color:white;
+
+}
+
+.message{
+
+margin-top:15px;
+
+text-align:center;
+
+font-size:14px;
+
+display:none;
+
+}
+
+.success{
+
+color:#00ff99;
+
+}
+
+.error{
+
+color:#ff4d6d;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="reset-container">
+
+<div class="logo">
+NEXORA
+</div>
+
+<p class="desc">
+
+أدخل بريدك الإلكتروني لإرسال رابط إعادة تعيين كلمة المرور
+
+</p>
+
+<input
+id="resetEmail"
+type="email"
+placeholder="البريد الإلكتروني"
+required
+>
+
+<button
+type="button"
+id="resetBtn"
+onclick="resetPassword()"
+>
+
+إرسال رابط إعادة التعيين
+
+</button>
+
+<div
+id="messageBox"
+class="message"
+></div>
+
+<a
+href="index.html"
+class="back"
+>
+
+العودة إلى تسجيل الدخول
+
+</a>
+
+</div>
+
+<script type="module">
+
+import { initializeApp }
+
+from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
+import {
+
+getAuth,
+sendPasswordResetEmail
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+/* CONFIG */
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyDLSOZogDC_f23jnybhYpH_MNVCnVHeU50",
+
+authDomain: "nexora-cdf18.firebaseapp.com",
+
+projectId: "nexora-cdf18",
+
+storageBucket: "nexora-cdf18.appspot.com",
+
+messagingSenderId: "610110841134",
+
+appId: "1:610110841134:web:86985a639f4f5139315abf"
+
+};
+
+/* INIT */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+/* RESET */
+
+window.resetPassword = async function(){
+
+const email =
+document
+.getElementById("resetEmail")
+.value
+.trim();
+
+const btn =
+document.getElementById("resetBtn");
+
+const messageBox =
+document.getElementById("messageBox");
+
+/* RESET MESSAGE */
+
+messageBox.style.display = "none";
+messageBox.innerText = "";
+messageBox.className = "message";
+
+/* VALIDATION */
+
+if(email === ""){
+
+messageBox.style.display = "block";
+messageBox.classList.add("error");
+
+messageBox.innerText =
+"أدخل البريد الإلكتروني";
+
+return;
+
+}
+
+if(!email.includes("@")){
+
+messageBox.style.display = "block";
+messageBox.classList.add("error");
+
+messageBox.innerText =
+"البريد الإلكتروني غير صالح";
+
+return;
+
+}
+
+/* LOADING */
+
+btn.disabled = true;
+btn.innerText = "جاري الإرسال...";
+
+try{
+
+await sendPasswordResetEmail(auth,email);
+
+/* SUCCESS */
+
+messageBox.style.display = "block";
+messageBox.classList.add("success");
+
+messageBox.innerText =
+"تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني";
+
+document.getElementById("resetEmail").value = "";
+
+}catch(error){
+
+messageBox.style.display = "block";
+messageBox.classList.add("error");
+
+/* FIREBASE ERRORS */
+
+if(error.code === "auth/user-not-found"){
+
+messageBox.innerText =
+"هذا البريد غير مسجل";
+
+}
+
+else if(error.code === "auth/invalid-email"){
+
+messageBox.innerText =
+"البريد الإلكتروني غير صحيح";
+
+}
+
+else{
+
+messageBox.innerText =
+"حدث خطأ أثناء الإرسال";
+
+}
+
+}
+
+/* RESET BUTTON */
+
+btn.disabled = false;
+btn.innerText = "إرسال رابط إعادة التعيين";
+
+};
+
+/* ENTER KEY */
+
+document
+.getElementById("resetEmail")
+.addEventListener("keypress",(e)=>{
+
+if(e.key === "Enter"){
+
+resetPassword();
+
+}
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>NEXORA | Home</title>
+
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968267.png">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<!-- ADSENSE -->
+
+<script async
+src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1286214178590123"
+crossorigin="anonymous">
+</script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:
+radial-gradient(circle at top,#0b1120,#070b14);
+color:white;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:16px 20px;
+background:rgba(15,22,41,.88);
+backdrop-filter:blur(20px);
+position:sticky;
+top:0;
+z-index:1000;
+border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+background:
+linear-gradient(90deg,#00bfff,#7a00ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+/* SEARCH */
+
+.searchBox{
+flex:1;
+margin:0 15px;
+position:relative;
+}
+
+.searchBox i{
+position:absolute;
+top:50%;
+left:15px;
+transform:translateY(-50%);
+color:#94a3b8;
+}
+
+.search{
+width:100%;
+padding:14px 15px 14px 45px;
+border:none;
+outline:none;
+border-radius:16px;
+background:#151d2f;
+color:white;
+font-size:15px;
+}
+
+/* ICONS */
+
+.icons{
+display:flex;
+gap:10px;
+}
+
+.icon{
+width:46px;
+height:46px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#151d2f;
+border-radius:14px;
+cursor:pointer;
+transition:.3s;
+font-size:18px;
+}
+
+.icon:hover{
+background:#1f2b47;
+transform:translateY(-2px);
+}
+
+/* CONTAINER */
+
+.container{
+padding:20px;
+max-width:1400px;
+margin:auto;
+}
+
+/* TOPBAR */
+
+.topBar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.topBar h2{
+font-size:28px;
+}
+
+.refreshBtn{
+padding:12px 18px;
+border:none;
+border-radius:14px;
+background:#151d2f;
+color:white;
+cursor:pointer;
+transition:.3s;
+}
+
+.refreshBtn:hover{
+background:#1f2b47;
+}
+
+/* ADS */
+
+.adsBox{
+margin-bottom:25px;
+background:#111827;
+padding:12px;
+border-radius:20px;
+overflow:hidden;
+}
+
+/* CATEGORIES */
+
+.categories{
+display:flex;
+gap:12px;
+overflow:auto;
+padding-bottom:10px;
+margin-bottom:25px;
+}
+
+.categories::-webkit-scrollbar{
+display:none;
+}
+
+.categories button{
+padding:12px 18px;
+border:none;
+border-radius:14px;
+background:#151d2f;
+color:white;
+cursor:pointer;
+white-space:nowrap;
+transition:.3s;
+font-size:14px;
+}
+
+.categories button:hover,
+.categories button.active{
+background:
+linear-gradient(135deg,#00bfff,#7a00ff);
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+/* CARD */
+
+.card{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.06);
+border-radius:24px;
+overflow:hidden;
+transition:.35s;
+backdrop-filter:blur(15px);
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 0 30px rgba(0,191,255,.15);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card-body{
+padding:18px;
+}
+
+.category{
+display:inline-block;
+padding:6px 12px;
+border-radius:999px;
+background:#111827;
+font-size:12px;
+margin-bottom:12px;
+color:#00bfff;
+}
+
+.card h3{
+font-size:18px;
+line-height:1.7;
+margin-bottom:16px;
+min-height:90px;
+}
+
+.buttons{
+display:flex;
+gap:10px;
+}
+
+.btn{
+flex:1;
+padding:12px;
+border:none;
+border-radius:14px;
+background:#151d2f;
+color:white;
+cursor:pointer;
+transition:.3s;
+font-size:14px;
+}
+
+.btn:hover{
+background:#1f2b47;
+}
+
+/* LOADING */
+
+.loading{
+padding:50px;
+text-align:center;
+font-size:18px;
+color:#94a3b8;
+}
+
+/* TOAST */
+
+.toast{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#1e293b;
+padding:14px 22px;
+border-radius:14px;
+display:none;
+z-index:9999;
+}
+
+/* FOOTER */
+
+.footer{
+margin-top:40px;
+padding:25px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+background:#111a2e;
+}
+
+.footer a{
+color:#94a3b8;
+text-decoration:none;
+}
+
+.footer a:hover{
+color:white;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+header{
+flex-wrap:wrap;
+gap:12px;
+}
+
+.searchBox{
+width:100%;
+margin:0;
+order:3;
+}
+
+.topBar{
+flex-direction:column;
+align-items:flex-start;
+gap:10px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+<div class="logo">
+NEXORA
+</div>
+
+<div class="searchBox">
+
+<i class="fa fa-search"></i>
+
+<input
+type="text"
+class="search"
+id="searchInput"
+placeholder="Search news..."
+>
+
+</div>
+
+<div class="icon"
+onclick="window.location.href='saved.html'">
+
+<i class="fa fa-bookmark"></i>
+
+</div>
+
+<div class="icon" id="profileBtn">
+
+<i class="fa fa-user"></i>
+
+</div>
+
+<div class="icon" id="settingsBtn">
+
+<i class="fa fa-gear"></i>
+
+</div>
+
+</div>
+
+</header>
+
+<!-- CONTAINER -->
+
+<div class="container">
+
+<div class="topBar">
+
+<h2 id="newsTitle">Latest News</h2>
+
+<button
+class="refreshBtn"
+onclick="refreshNews()">
+
+<i class="fa fa-rotate"></i>
+
+</button>
+
+</div>
+
+<!-- ADS -->
+
+<div class="adsBox">
+
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-1286214178590123"
+data-ad-slot="1234567890"
+data-ad-format="auto"
+data-full-width-responsive="true">
+</ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+<!-- CATEGORIES -->
+
+<div class="categories">
+
+<button class="active"
+onclick="changeCategory(this,'technology')">
+Technology
+</button>
+
+<button onclick="changeCategory(this,'sports')">
+Sports
+</button>
+
+<button onclick="changeCategory(this,'business')">
+Business
+</button>
+
+<button onclick="changeCategory(this,'health')">
+Health
+</button>
+
+<button onclick="changeCategory(this,'science')">
+Science
+</button>
+
+<button onclick="changeCategory(this,'entertainment')">
+Entertainment
+</button>
+
+</div>
+
+<!-- NEWS -->
+
+<div class="grid"
+id="newsContainer">
+
+<div class="loading">
+Loading news...
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<a href="about.html">
+About
+</a>
+
+<a href="contact.html">
+Contact
+</a>
+
+<a href="privacy.html">
+Privacy Policy
+</a>
+
+<a href="terms.html">
+Terms
+</a>
+
+</footer>
+
+<!-- TOAST -->
+
+<div class="toast"
+id="toast">
+
+Saved
+
+</div>
+
+<script>
+
+/* API */
+
+const apiKey =
+"f621c4f1761846988c4e1816629bddc7";
+
+/* ELEMENTS */
+
+const container =
+document.getElementById("newsContainer");
+
+const searchInput =
+document.getElementById("searchInput");
+
+/* STATE */
+
+let currentCategory =
+"technology";
+
+let page = 1;
+
+let loading = false;
+
+let shownArticles =
+new Set();
+
+/* LOAD NEWS */
+
+async function loadNews(reset = false){
+
+if(loading) return;
+
+loading = true;
+
+if(reset){
+
+container.innerHTML = `
+
+<div class="loading">
+
+Loading news...
+
+</div>
+
+`;
+
+shownArticles.clear();
+
+}
+
+try{
+
+const url =
+
+`https://newsapi.org/v2/top-headlines?country=us&category=${currentCategory}&pageSize=12&page=${page}&apiKey=${apiKey}`;
+
+const response =
+await fetch(url);
+
+const data =
+await response.json();
+
+if(reset){
+
+container.innerHTML = "";
+
+}
+
+if(!data.articles ||
+data.articles.length === 0){
+
+container.innerHTML = `
+
+<div class="loading">
+
+No news available
+
+</div>
+
+`;
+
+loading = false;
+return;
+
+}
+
+/* REMOVE DUPLICATES */
+
+const uniqueArticles =
+
+data.articles.filter(article=>{
+
+if(!article.title || !article.url){
+
+return false;
+
+}
+
+const key =
+article.title + article.url;
+
+if(shownArticles.has(key)){
+
+return false;
+
+}
+
+shownArticles.add(key);
+
+return true;
+
+});
+
+/* SHOW NEWS */
+
+uniqueArticles.forEach(article=>{
+
+const image =
+
+article.urlToImage ||
+
+"https://picsum.photos/500/300?random=" +
+
+Math.floor(Math.random()*9999);
+
+container.innerHTML += `
+
+<div class="card">
+
+<img
+src="${image}"
+onerror="this.src='https://picsum.photos/500/300'"
+>
+
+<div class="card-body">
+
+<div class="category">
+
+${currentCategory}
+
+</div>
+
+<h3>
+
+${article.title}
+
+</h3>
+
+<div class="buttons">
+
+<button
+class="btn"
+onclick="window.open('${article.url}','_blank')">
+
+Read Article
+
+</button>
+
+<button
+class="btn"
+onclick="saveArticle(
+'${encodeURIComponent(article.title)}',
+'${encodeURIComponent(article.url)}'
+)">
+
+<i class="fa fa-bookmark"></i>
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+loading = false;
+
+}
+
+catch(error){
+
+console.log(error);
+
+container.innerHTML = `
+
+<div class="loading">
+
+Failed to load news
+
+</div>
+
+`;
+
+loading = false;
+
+}
+
+}
+
+/* SAVE ARTICLE */
+
+function saveArticle(title,url){
+
+const decodedTitle =
+decodeURIComponent(title);
+
+const decodedUrl =
+decodeURIComponent(url);
+
+let saved =
+
+JSON.parse(
+localStorage.getItem("savedNews")
+|| "[]"
+);
+
+const exists =
+saved.some(item=>
+item.url === decodedUrl
+);
+
+if(!exists){
+
+saved.push({
+
+title:decodedTitle,
+url:decodedUrl
+
+});
+
+localStorage.setItem(
+"savedNews",
+JSON.stringify(saved)
+);
+
+}
+
+showToast("Saved");
+
+}
+
+/* TOAST */
+
+function showToast(text){
+
+const toast =
+document.getElementById("toast");
+
+toast.innerText = text;
+
+toast.style.display = "block";
+
+setTimeout(()=>{
+
+toast.style.display = "none";
+
+},2000);
+
+}
+
+/* CATEGORY */
+
+function changeCategory(btn,category){
+
+document
+.querySelectorAll(".categories button")
+.forEach(b=>{
+
+b.classList.remove("active");
+
+});
+
+btn.classList.add("active");
+
+currentCategory = category;
+
+page = 1;
+
+loadNews(true);
+
+}
+
+/* REFRESH */
+
+function refreshNews(){
+
+page = 1;
+
+loadNews(true);
+
+}
+
+/* SEARCH */
+
+searchInput.addEventListener("keypress",
+
+async(e)=>{
+
+if(e.key !== "Enter") return;
+
+const value =
+e.target.value.trim();
+
+if(value === "") return;
+
+container.innerHTML = `
+
+<div class="loading">
+
+Searching...
+
+</div>
+
+`;
+
+shownArticles.clear();
+
+try{
+
+const response = await fetch(
+
+`https://newsapi.org/v2/everything?q=${value}&sortBy=publishedAt&pageSize=20&apiKey=${apiKey}`
+
+);
+
+const data =
+await response.json();
+
+container.innerHTML = "";
+
+if(!data.articles ||
+data.articles.length === 0){
+
+container.innerHTML = `
+
+<div class="loading">
+
+No results found
+
+</div>
+
+`;
+
+return;
+
+}
+
+data.articles.forEach(article=>{
+
+const image =
+
+article.urlToImage ||
+
+"https://picsum.photos/500/300";
+
+container.innerHTML += `
+
+<div class="card">
+
+<img
+src="${image}"
+onerror="this.src='https://picsum.photos/500/300'"
+>
+
+<div class="card-body">
+
+<div class="category">
+
+SEARCH
+
+</div>
+
+<h3>
+
+${article.title}
+
+</h3>
+
+<div class="buttons">
+
+<button
+class="btn"
+onclick="window.open('${article.url}','_blank')">
+
+Read Article
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+catch(error){
+
+console.log(error);
+
+}
+
+});
+
+/* PROFILE */
+
+document
+.getElementById("profileBtn")
+.onclick = ()=>{
+
+window.location.href =
+"profile.html";
+
+};
+
+/* SETTINGS */
+
+document
+.getElementById("settingsBtn")
+.onclick = ()=>{
+
+window.location.href =
+"settings.html";
+
+};
+
+/* INFINITE SCROLL */
+
+window.addEventListener("scroll",()=>{
+
+if(
+window.innerHeight + window.scrollY
+>= document.body.offsetHeight - 700
+){
+
+page++;
+
+loadNews(false);
+
+}
+
+});
+
+/* START */
+
+loadNews(true);
+
+</script>
+
+</body>
+</html>

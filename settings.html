@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>NEXORA | Settings</title>
+
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968267.png">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:
+radial-gradient(circle at top,#0b1120,#070b14);
+color:white;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 25px;
+background:rgba(15,22,41,.8);
+backdrop-filter:blur(20px);
+position:sticky;
+top:0;
+z-index:100;
+border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+background:
+linear-gradient(90deg,#00bfff,#7a00ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+nav{
+display:flex;
+gap:10px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+padding:10px 14px;
+background:#151d2f;
+border-radius:12px;
+transition:.3s;
+font-size:14px;
+}
+
+nav a:hover{
+transform:translateY(-2px);
+background:#1b2640;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:950px;
+margin:auto;
+padding:25px;
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+/* PROFILE CARD */
+
+.profileCard{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+padding:30px;
+border-radius:25px;
+text-align:center;
+position:relative;
+overflow:hidden;
+}
+
+.profileCard::before{
+content:"";
+position:absolute;
+width:300px;
+height:300px;
+background:
+radial-gradient(circle,#00bfff33,transparent);
+top:-120px;
+right:-120px;
+}
+
+.profileCard img{
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid #00bfff;
+margin-bottom:15px;
+position:relative;
+z-index:2;
+}
+
+.profileCard h2{
+position:relative;
+z-index:2;
+margin-bottom:8px;
+font-size:26px;
+}
+
+.profileCard p{
+position:relative;
+z-index:2;
+color:#aaa;
+}
+
+/* CARD */
+
+.card{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.06);
+padding:22px;
+border-radius:22px;
+backdrop-filter:blur(14px);
+}
+
+.card h2{
+margin-bottom:15px;
+font-size:22px;
+}
+
+/* INPUTS */
+
+input{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+border:none;
+border-radius:14px;
+background:#0f1629;
+color:white;
+outline:none;
+font-size:14px;
+transition:.3s;
+}
+
+input:focus{
+border:1px solid #00bfff;
+box-shadow:0 0 15px rgba(0,191,255,.2);
+}
+
+/* BUTTONS */
+
+button{
+padding:13px 18px;
+border:none;
+border-radius:14px;
+cursor:pointer;
+background:
+linear-gradient(135deg,#00bfff,#7a00ff);
+color:white;
+font-weight:bold;
+font-size:14px;
+transition:.3s;
+}
+
+button:hover{
+transform:translateY(-3px);
+box-shadow:0 0 20px rgba(0,191,255,.35);
+}
+
+.danger{
+background:
+linear-gradient(135deg,#ff004c,#ff4d6d);
+}
+
+/* TOAST */
+
+.toast{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#1e293b;
+padding:12px 20px;
+border-radius:12px;
+display:none;
+z-index:9999;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+header{
+flex-direction:column;
+gap:12px;
+}
+
+nav{
+width:100%;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.profileCard{
+padding:25px;
+}
+
+.profileCard h2{
+font-size:22px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+NEXORA
+</div>
+
+<nav>
+
+<a href="home.html"
+id="homeText">
+
+Home
+
+</a>
+
+<a href="profile.html"
+id="profileText">
+
+Profile
+
+</a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+<!-- PROFILE -->
+
+<div class="profileCard">
+
+<img
+id="profileImage"
+src="https://via.placeholder.com/150">
+
+<h2 id="profileName">
+User
+</h2>
+
+<p id="profileEmail">
+...
+</p>
+
+</div>
+
+<!-- CHANGE NAME -->
+
+<div class="card">
+
+<h2 id="nameTitle">
+Change Name
+</h2>
+
+<input
+id="nameInput">
+
+<button
+onclick="changeName()"
+id="saveNameBtn">
+
+Save Name
+
+</button>
+
+</div>
+
+<!-- CHANGE PHOTO -->
+
+<div class="card">
+
+<h2 id="photoTitle">
+Change Photo
+</h2>
+
+<input
+id="photoInput">
+
+<button
+onclick="changePhoto()"
+id="savePhotoBtn">
+
+Save Photo
+
+</button>
+
+</div>
+
+<!-- CHANGE PASSWORD -->
+
+<div class="card">
+
+<h2 id="passTitle">
+Change Password
+</h2>
+
+<input
+type="password"
+id="passInput">
+
+<button
+onclick="changePassword()"
+id="savePassBtn">
+
+Change Password
+
+</button>
+
+</div>
+
+<!-- ACCOUNT -->
+
+<div class="card">
+
+<h2 id="accountTitle">
+Account
+</h2>
+
+<button
+class="danger"
+onclick="logout()"
+id="logoutBtn">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+<!-- TOAST -->
+
+<div class="toast"
+id="toast">
+
+Done
+
+</div>
+
+<script type="module">
+
+/* FIREBASE */
+
+import { initializeApp }
+
+from
+"https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
+import {
+
+getAuth,
+onAuthStateChanged,
+updateProfile,
+updatePassword,
+signOut
+
+}
+
+from
+"https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+/* CONFIG */
+
+const firebaseConfig = {
+  
+  apiKey: "AIzaSyDLSOZogDC_f23jnybhYpH_MNVCnVHeU50",
+  
+  authDomain: "nexora-cdf18.firebaseapp.com",
+  
+  projectId: "nexora-cdf18",
+  
+  storageBucket: "nexora-cdf18.appspot.com",
+  
+  messagingSenderId: "610110841134",
+  
+  appId: "1:610110841134:web:86985a639f4f5139315abf"
+  
+};
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+let user = null;
+
+/* LANGUAGE */
+
+const lang =
+navigator.language || "en";
+
+const texts = {
+
+ar:{
+
+home:"الرئيسية",
+profile:"الملف الشخصي",
+
+changeName:"تغيير الاسم",
+changePhoto:"تغيير الصورة",
+changePassword:"تغيير كلمة المرور",
+account:"الحساب",
+
+namePlaceholder:"الاسم الجديد",
+photoPlaceholder:"رابط الصورة الجديد",
+passPlaceholder:"كلمة المرور الجديدة",
+
+saveName:"حفظ الاسم",
+savePhoto:"حفظ الصورة",
+savePassword:"تغيير كلمة المرور",
+
+logout:"تسجيل الخروج",
+
+nameSuccess:"تم تغيير الاسم",
+photoSuccess:"تم تغيير الصورة",
+passSuccess:"تم تغيير كلمة المرور",
+logoutSuccess:"تم تسجيل الخروج",
+
+enterName:"اكتب الاسم",
+enterPhoto:"ضع رابط الصورة",
+
+passError:"كلمة المرور يجب أن تكون 6 أحرف على الأقل"
+
+},
+
+es:{
+
+home:"Inicio",
+profile:"Perfil",
+
+changeName:"Cambiar nombre",
+changePhoto:"Cambiar foto",
+changePassword:"Cambiar contraseña",
+account:"Cuenta",
+
+namePlaceholder:"Nuevo nombre",
+photoPlaceholder:"Nueva URL de foto",
+passPlaceholder:"Nueva contraseña",
+
+saveName:"Guardar nombre",
+savePhoto:"Guardar foto",
+savePassword:"Cambiar contraseña",
+
+logout:"Cerrar sesión",
+
+nameSuccess:"Nombre actualizado",
+photoSuccess:"Foto actualizada",
+passSuccess:"Contraseña actualizada",
+logoutSuccess:"Sesión cerrada",
+
+enterName:"Escribe el nombre",
+enterPhoto:"Pon URL de imagen",
+
+passError:"La contraseña debe tener mínimo 6 caracteres"
+
+},
+
+en:{
+
+home:"Home",
+profile:"Profile",
+
+changeName:"Change Name",
+changePhoto:"Change Photo",
+changePassword:"Change Password",
+account:"Account",
+
+namePlaceholder:"New name",
+photoPlaceholder:"New photo URL",
+passPlaceholder:"New password",
+
+saveName:"Save Name",
+savePhoto:"Save Photo",
+savePassword:"Change Password",
+
+logout:"Logout",
+
+nameSuccess:"Name Updated",
+photoSuccess:"Photo Updated",
+passSuccess:"Password Updated",
+logoutSuccess:"Logged Out",
+
+enterName:"Enter name",
+enterPhoto:"Enter image URL",
+
+passError:"Password must be at least 6 characters"
+
+}
+
+};
+
+let t = texts.en;
+
+if(lang.startsWith("ar")){
+
+document.documentElement.lang = "ar";
+document.documentElement.dir = "rtl";
+
+t = texts.ar;
+
+}
+
+else if(lang.startsWith("es")){
+
+document.documentElement.lang = "es";
+document.documentElement.dir = "ltr";
+
+t = texts.es;
+
+}
+
+/* APPLY TEXTS */
+
+document.getElementById("homeText")
+.innerText = t.home;
+
+document.getElementById("profileText")
+.innerText = t.profile;
+
+document.getElementById("nameTitle")
+.innerText = t.changeName;
+
+document.getElementById("photoTitle")
+.innerText = t.changePhoto;
+
+document.getElementById("passTitle")
+.innerText = t.changePassword;
+
+document.getElementById("accountTitle")
+.innerText = t.account;
+
+document.getElementById("saveNameBtn")
+.innerText = t.saveName;
+
+document.getElementById("savePhotoBtn")
+.innerText = t.savePhoto;
+
+document.getElementById("savePassBtn")
+.innerText = t.savePassword;
+
+document.getElementById("logoutBtn")
+.innerText = t.logout;
+
+document.getElementById("nameInput")
+.placeholder = t.namePlaceholder;
+
+document.getElementById("photoInput")
+.placeholder = t.photoPlaceholder;
+
+document.getElementById("passInput")
+.placeholder = t.passPlaceholder;
+
+/* TOAST */
+
+function showToast(text){
+
+const toast =
+document.getElementById("toast");
+
+toast.innerText = text;
+
+toast.style.display = "block";
+
+setTimeout(()=>{
+
+toast.style.display = "none";
+
+},2000);
+
+}
+
+/* CHECK USER */
+
+onAuthStateChanged(auth,(u)=>{
+
+if(!u){
+
+window.location.href =
+"index.html";
+
+return;
+
+}
+
+user = u;
+
+/* USER INFO */
+
+document
+.getElementById("profileName")
+.innerText =
+
+u.displayName || "User";
+
+document
+.getElementById("profileEmail")
+.innerText =
+
+u.email;
+
+if(u.photoURL){
+
+document
+.getElementById("profileImage")
+.src =
+
+u.photoURL;
+
+}
+
+});
+
+/* CHANGE NAME */
+
+window.changeName =
+async function(){
+
+const name =
+document.getElementById("nameInput")
+.value.trim();
+
+if(!name){
+
+alert(t.enterName);
+
+return;
+
+}
+
+await updateProfile(user,{
+
+displayName:name
+
+});
+
+showToast(t.nameSuccess);
+
+setTimeout(()=>{
+
+location.reload();
+
+},1000);
+
+};
+
+/* CHANGE PHOTO */
+
+window.changePhoto =
+async function(){
+
+const photo =
+document.getElementById("photoInput")
+.value.trim();
+
+if(!photo){
+
+alert(t.enterPhoto);
+
+return;
+
+}
+
+await updateProfile(user,{
+
+photoURL:photo
+
+});
+
+showToast(t.photoSuccess);
+
+setTimeout(()=>{
+
+location.reload();
+
+},1000);
+
+};
+
+/* CHANGE PASSWORD */
+
+window.changePassword =
+async function(){
+
+const pass =
+document.getElementById("passInput")
+.value;
+
+if(pass.length < 6){
+
+alert(t.passError);
+
+return;
+
+}
+
+await updatePassword(user,pass);
+
+showToast(t.passSuccess);
+
+document
+.getElementById("passInput")
+.value = "";
+
+};
+
+/* LOGOUT */
+
+window.logout =
+async function(){
+
+await signOut(auth);
+
+showToast(t.logoutSuccess);
+
+setTimeout(()=>{
+
+window.location.href =
+"index.html";
+
+},1000);
+
+};
+
+</script>
+
+</body>
+
+</html>

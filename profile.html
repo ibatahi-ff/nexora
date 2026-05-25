@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>NEXORA | Profile</title>
+
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968267.png">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:
+radial-gradient(circle at top,#0b1120,#070b14);
+color:white;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 25px;
+background:rgba(15,22,41,.8);
+backdrop-filter:blur(20px);
+position:sticky;
+top:0;
+z-index:100;
+border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+background:
+linear-gradient(90deg,#00bfff,#7a00ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+nav{
+display:flex;
+gap:10px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+padding:10px 14px;
+background:#151d2f;
+border-radius:12px;
+transition:.3s;
+font-size:14px;
+}
+
+nav a:hover{
+transform:translateY(-2px);
+background:#1b2640;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:950px;
+margin:auto;
+padding:25px;
+}
+
+/* PROFILE */
+
+.profile{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+padding:35px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 0 40px rgba(0,0,0,.4);
+position:relative;
+overflow:hidden;
+}
+
+.profile::before{
+content:"";
+position:absolute;
+width:00px;
+height:300px;
+background:
+radial-gradient(circle,#000000,transparent);
+top:-120px;
+right:-120px;
+}
+
+.profile img{
+width:135px;
+height:135px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid #01FF00;
+margin-bottom:15px;
+position:relative;
+z-index:2;
+}
+
+.profile h2{
+font-size:28px;
+margin-bottom:8px;
+position:relative;
+z-index:2;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:8px;
+}
+
+.profile p{
+color:#aaa;
+margin-bottom:18px;
+position:relative;
+z-index:2;
+}
+
+.verifiedBadge{
+display:none;
+color:#3482FF;
+font-size:20px;
+}
+
+/* BUTTONS */
+
+.buttons{
+display:flex;
+justify-content:center;
+gap:12px;
+flex-wrap:wrap;
+position:relative;
+z-index:2;
+}
+
+.btn{
+padding:12px 18px;
+border:none;
+border-radius:14px;
+background:
+linear-gradient(135deg,#00bfff,#7a00ff);
+color:white;
+cursor:pointer;
+transition:.3s;
+font-size:14px;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+box-shadow:0 0 20px rgba(0,191,255,.35);
+}
+
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(150px,1fr));
+gap:15px;
+margin-top:25px;
+}
+
+.stat{
+background:rgba(255,255,255,.04);
+padding:18px;
+border-radius:18px;
+text-align:center;
+border:1px solid rgba(255,255,255,.06);
+}
+
+.stat h3{
+font-size:24px;
+margin-bottom:6px;
+color:#00bfff;
+}
+
+/* SECTION */
+
+.section-title{
+margin:35px 0 18px;
+font-size:22px;
+color:#ddd;
+}
+
+/* POSTS */
+
+.posts{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.post{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.06);
+padding:18px;
+border-radius:18px;
+transition:.3s;
+}
+
+.post:hover{
+transform:translateY(-4px);
+background:rgba(255,255,255,.06);
+}
+
+.post h4{
+margin-bottom:8px;
+font-size:18px;
+}
+
+.post p{
+color:#aaa;
+font-size:14px;
+line-height:1.6;
+}
+
+/* EMPTY */
+
+.empty{
+text-align:center;
+padding:35px;
+color:#777;
+}
+
+/* TOAST */
+
+.toast{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#1e293b;
+padding:12px 20px;
+border-radius:12px;
+display:none;
+z-index:9999;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+header{
+flex-direction:column;
+gap:12px;
+}
+
+nav{
+width:100%;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.profile{
+padding:25px;
+}
+
+.profile h2{
+font-size:22px;
+}
+
+}
+.footer {
+  margin-top: 40px;
+  padding: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: #111827;
+  border-top: 1px solid rgba(255, 255, 255, .05);
+}
+
+.footer a {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.footer a:hover {
+  color: white;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+NEXORA
+</div>
+
+<nav>
+
+<a href="home.html"
+id="homeText">
+Home
+</a>
+
+<a href="settings.html"
+id="settingsText">
+Settings
+</a>
+
+<a href="#"
+onclick="logout()"
+id="logoutText">
+Logout
+</a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+<div class="profile">
+
+<img
+id="profileImage"
+src="https://via.placeholder.com/150"
+>
+
+<h2>
+
+<span id="profileName">
+...
+</span>
+
+<span
+id="verifiedBadge"
+class="verifiedBadge">
+
+<i class="fa-solid fa-circle-check"></i>
+
+</span>
+
+</h2>
+
+<p id="profileEmail">
+...
+</p>
+
+<div class="buttons">
+
+<button
+class="btn"
+onclick="goToSettings()"
+id="editBtn">
+
+Edit Profile
+
+</button>
+
+<button
+class="btn"
+onclick="goHome()"
+id="newsBtn">
+
+News Feed
+
+</button>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+
+<h3 id="postsCount">
+0
+</h3>
+
+<p id="postsText">
+Posts
+</p>
+
+</div>
+
+<div class="stat">
+
+<h3 id="savedCount">
+0
+</h3>
+
+<p id="savedText">
+Saved
+</p>
+
+</div>
+
+<div class="stat">
+
+<h3 id="langTextStat">
+EN
+</h3>
+
+<p>
+Language
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<h3 class="section-title"
+id="myPostsText">
+
+My Posts
+
+</h3>
+
+<div id="userPosts"
+class="posts"></div>
+
+</div>
+
+<div class="toast"
+id="toast">
+
+Done
+
+</div>
+
+<script type="module">
+
+/* FIREBASE */
+
+import { initializeApp }
+
+from
+"https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
+import {
+
+getAuth,
+onAuthStateChanged,
+signOut,
+updateProfile
+
+}
+
+from
+"https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+import {
+
+getFirestore,
+collection,
+query,
+where,
+getDocs
+
+}
+
+from
+"https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+/* CONFIG */
+
+const firebaseConfig = {
+  
+  apiKey: "AIzaSyDLSOZogDC_f23jnybhYpH_MNVCnVHeU50",
+  
+  authDomain: "nexora-cdf18.firebaseapp.com",
+  
+  projectId: "nexora-cdf18",
+  
+  storageBucket: "nexora-cdf18.appspot.com",
+  
+  messagingSenderId: "610110841134",
+  
+  appId: "1:610110841134:web:86985a639f4f5139315abf"
+  
+};
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+const db =
+getFirestore(app);
+
+/* LANGUAGE */
+
+const lang =
+navigator.language || "en";
+
+const texts = {
+
+ar:{
+home:"الرئيسية",
+settings:"الإعدادات",
+logout:"تسجيل الخروج",
+edit:"تعديل الملف الشخصي",
+feed:"الأخبار",
+posts:"منشوراتي",
+saved:"المحفوظات",
+noPosts:"لا توجد منشورات بعد"
+},
+
+es:{
+home:"Inicio",
+settings:"Configuración",
+logout:"Cerrar sesión",
+edit:"Editar perfil",
+feed:"Noticias",
+posts:"Mis publicaciones",
+saved:"Guardados",
+noPosts:"No hay publicaciones"
+},
+
+en:{
+home:"Home",
+settings:"Settings",
+logout:"Logout",
+edit:"Edit Profile",
+feed:"News Feed",
+posts:"My Posts",
+saved:"Saved",
+noPosts:"No posts yet"
+}
+
+};
+
+let t = texts.en;
+
+if(lang.startsWith("ar")){
+
+document.documentElement.lang = "ar";
+document.documentElement.dir = "rtl";
+
+t = texts.ar;
+
+}
+
+else if(lang.startsWith("es")){
+
+document.documentElement.lang = "es";
+
+t = texts.es;
+
+}
+
+/* APPLY TEXTS */
+
+document.getElementById("homeText")
+.innerText = t.home;
+
+document.getElementById("settingsText")
+.innerText = t.settings;
+
+document.getElementById("logoutText")
+.innerText = t.logout;
+
+document.getElementById("editBtn")
+.innerText = t.edit;
+
+document.getElementById("newsBtn")
+.innerText = t.feed;
+
+document.getElementById("postsText")
+.innerText = t.posts;
+
+document.getElementById("savedText")
+.innerText = t.saved;
+
+document.getElementById("myPostsText")
+.innerText = t.posts;
+
+/* LANGUAGE TEXT */
+
+document.getElementById("langTextStat")
+.innerText =
+document.documentElement.lang.toUpperCase();
+
+/* TOAST */
+
+function showToast(text){
+
+const toast =
+document.getElementById("toast");
+
+toast.innerText = text;
+
+toast.style.display = "block";
+
+setTimeout(()=>{
+
+toast.style.display = "none";
+
+},2000);
+
+}
+
+/* USER */
+
+onAuthStateChanged(auth,
+
+async(user)=>{
+
+if(!user){
+
+window.location.href =
+"index.html";
+
+return;
+
+}
+
+/* USER INFO */
+
+document
+.getElementById("profileName")
+.innerText =
+
+user.displayName || "User";
+
+document
+.getElementById("profileEmail")
+.innerText =
+
+user.email;
+
+/* RANDOM PROFILE IMAGE */
+
+const randomImages = [
+
+"https://i.pravatar.cc/300?img=1",
+"https://i.pravatar.cc/300?img=2",
+"https://i.pravatar.cc/300?img=3",
+"https://i.pravatar.cc/300?img=4",
+"https://i.pravatar.cc/300?img=5",
+"https://i.pravatar.cc/300?img=6",
+"https://i.pravatar.cc/300?img=7",
+"https://i.pravatar.cc/300?img=8",
+"https://i.pravatar.cc/300?img=9",
+"https://i.pravatar.cc/300?img=10"
+
+];
+
+/* IF USER HAS PHOTO */
+
+if(user.photoURL){
+
+document
+.getElementById("profileImage")
+.src = user.photoURL;
+
+}
+
+/* IF USER HAS NO PHOTO */
+
+else{
+
+const randomPhoto =
+
+randomImages[
+Math.floor(
+Math.random() *
+randomImages.length
+)
+];
+
+await updateProfile(user,{
+
+photoURL: randomPhoto
+
+});
+
+document
+.getElementById("profileImage")
+.src = randomPhoto;
+
+}
+
+/* CHECK VERIFIED */
+
+const verifyQuery = query(
+
+collection(db, "verifiedUsers"),
+
+where("email", "==", user.email)
+
+);
+
+const verifySnap =
+await getDocs(verifyQuery);
+
+if(!verifySnap.empty){
+
+document
+.getElementById("verifiedBadge")
+.style.display = "inline-flex";
+
+}
+
+/* POSTS */
+
+loadPosts(user.email);
+
+/* SAVED */
+
+document
+.getElementById("savedCount")
+.innerText =
+
+localStorage.length;
+
+});
+
+/* POSTS */
+
+async function loadPosts(email){
+
+const container =
+document.getElementById("userPosts");
+
+container.innerHTML = "";
+
+const q = query(
+
+collection(db,"news"),
+
+where("author","==",email)
+
+);
+
+const snap =
+await getDocs(q);
+
+document
+.getElementById("postsCount")
+.innerText =
+snap.size;
+
+if(snap.empty){
+
+container.innerHTML = `
+
+<div class="empty">
+
+${t.noPosts}
+
+</div>
+
+`;
+
+return;
+
+}
+
+snap.forEach(doc=>{
+
+const d = doc.data();
+
+container.innerHTML += `
+
+<div class="post">
+
+<h4>
+${d.title || "Untitled"}
+</h4>
+
+<p>
+${d.desc || ""}
+</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+/* NAVIGATION */
+
+window.goHome = function(){
+
+window.location.href =
+"home.html";
+
+};
+
+window.goToSettings = function(){
+
+window.location.href =
+"settings.html";
+
+};
+
+/* LOGOUT */
+
+window.logout =
+async function(){
+
+await signOut(auth);
+
+showToast("Bye 👋");
+
+setTimeout(()=>{
+
+window.location.href =
+"index.html";
+
+},1000);
+
+};
+
+</script>
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<a href="privacy.html">
+Privacy Policy
+</a>
+
+<a href="about.html">
+About
+</a>
+
+<a href="contact.html">
+Contact
+</a>
+
+</footer>
+</body>
+
+</html>

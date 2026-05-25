@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ibatahi-ff.github.io/nexora/sitemap.xml
